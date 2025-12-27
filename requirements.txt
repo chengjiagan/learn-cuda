@@ -1,0 +1,8 @@
+# CUDA dependencies
+cupy-cuda13x
+cuda-tile
+nvidia-cutlass-dsl
+
+# Dev tools
+ruff
+pre-commit

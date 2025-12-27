@@ -1,0 +1,45 @@
+{
+  "name": "CUDA Learning Environment",
+  "build": {
+    "dockerfile": "../docker/Dockerfile",
+    "context": "../docker",
+    "args": {
+      "VERSION": "25.12"
+    }
+  },
+
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff"
+      ]
+    }
+  },
+
+  // Run arguments for the container
+  "runArgs": [
+    "--ipc=host",
+    "--ulimit=memlock=-1",
+    "--ulimit=stack=67108864",
+    "--cap-add=SYS_ADMIN",
+    "--cap-add=SYS_PTRACE"
+  ],
+
+  // Mounts
+  "mounts": [
+    "type=bind,source=${localEnv:HOME}/.ssh,target=/home/ubuntu/.ssh",
+    "type=bind,source=${localEnv:HOME}/.cache/container/learn-cude,target=/home/ubuntu/storage"
+  ],
+
+  // Environment variables
+  "containerEnv": {
+    "HISTFILE": "/home/ubuntu/storage/zsh_history",
+    "_ZO_DATA_DIR": "/home/ubuntu/storage"
+  },
+
+  "postCreateCommand": "docker/install.sh"
+}
