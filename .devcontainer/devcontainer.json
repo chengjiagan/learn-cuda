@@ -1,5 +1,5 @@
 {
-  "name": "CUDA Learning Environment",
+  "name": "learn-cuda",
   "build": {
     "dockerfile": "../docker/Dockerfile",
     "context": "../docker",
@@ -22,6 +22,7 @@
 
   // Run arguments for the container
   "runArgs": [
+    "--gpus=all",
     "--ipc=host",
     "--ulimit=memlock=-1",
     "--ulimit=stack=67108864",
